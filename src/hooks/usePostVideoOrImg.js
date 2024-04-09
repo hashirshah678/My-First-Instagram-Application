@@ -21,11 +21,15 @@ const usePostVideoOrImg = () => {
 
     const handleCreatePost = async (SelectedVideo, caption, SelectedImg , SelectedImgAndVideo) => {
         if (isloading) return;
-        console.log(!SelectedImg || !SelectedVideo);
-        const IsNotSelected = SelectedImgAndVideo.includes("image") || SelectedImgAndVideo.includes("video/mp4");
-        if (!IsNotSelected) {
-            throw new Error("Please select an video/image")
-        }
+        if(SelectedImgAndVideo === null){
+                showtoast("Error", "Please select an video/image before post", "error");
+                return
+        }else{
+                const IsNotSelected = SelectedImgAndVideo.includes("image") || SelectedImgAndVideo.includes("video/mp4");
+                if (!IsNotSelected) {
+                throw new Error("Please select an video/image")
+                }
+            }
 
         setisloading(true);
 
